@@ -1,14 +1,30 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const clothingItemSchema = new mongoose.Schema({
   name: {
-    required: true, // every user has a name, so it's a required field
-    minlength: 2, // the minimum length of the name is 2 characters
-    maxlength: 30, // the maximum length is 30 characters
     type: String,
-  },
-  : {
-    type: String, // the pronouns are a string
     required: true,
+    minlength: 2,
+    maxlength: 30,
   },
+  weather: {
+    type: String,
+    required: true,
+    enum: ["hot", "warm", "cold"], // optional: enforce values
+  },
+  imageUrl: {
+    type: String,
+    required: [true, "Image URL is required"],
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
