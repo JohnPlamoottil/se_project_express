@@ -13,3 +13,5 @@ const userSchema = new mongoose.Schema({
     required: [true, "Avatar URL is required"],
   },
 });
+
+module.exports = mongoose.model("User", userSchema);
