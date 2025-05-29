@@ -24,6 +24,8 @@ module.exports = {
       "error",
       {
         allow: ["_id"], // allow specific names
+        allowAfterThis: true,
+        allowAfterSuper: true,
       },
     ],
   },
