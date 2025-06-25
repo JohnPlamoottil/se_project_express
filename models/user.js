@@ -19,6 +19,21 @@ const userSchema = new mongoose.Schema({
       message: "You must enter a valid URL with http/https",
     },
   },
+  email: {
+    type: String,
+    unique: true,
+    required: [true, "email address required"],
+    validate: {
+      validator(value) {
+        return validator.isEmail(value);
+      },
+    },
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 8,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
