@@ -1,4 +1,5 @@
-# WTWR (What to Wear?): Express Server - Back End
+# WTWR (What to Wear?)
+## this is the 'server' side called SE_Project_Express - Back End
 The back-end project is focused on creating a server for the WTWR application. 
 
 You’ll gain a deeper understanding of how to work with databases, set up security and testing, and deploy web applications on a remote machine. 
