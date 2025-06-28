@@ -1,28 +1,24 @@
-// Step9 Handle Errors Status Codes
+// Handle Errors Status Codes
+const OK = 200;
+const CREATED = 201;
+
 const BAD_REQUEST = 400;
+const UNAUTHORIZED = 401;
+const FORBIDDEN = 403;
 const NOT_FOUND = 404;
-const DEFAULT = 500;
+const CONFLICT = 409;
 
-// Centralized Error Handler
-const handleError = (err, res) => {
-  console.error(err);
+const INTERNAL_SERVER_ERROR = 500;
 
-  if (err.name === "ValidationError") {
-    return res.status(BAD_REQUEST).send({ message: err.message });
-  }
-
-  if (err.name === "CastError") {
-    return res.status(BAD_REQUEST).send({ message: "Invalid ID format" });
-  }
-
-  return res
-    .status(DEFAULT)
-    .send({ message: "An error has occurred on the server" });
-};
+// Centralized Error Handler was deleted june28 2025 with Jenny Doctor Office hour
 
 module.exports = {
+  OK,
+  CREATED,
   BAD_REQUEST,
+  UNAUTHORIZED,
+  FORBIDDEN,
   NOT_FOUND,
-  DEFAULT,
-  handleError,
+  CONFLICT,
+  INTERNAL_SERVER_ERROR,
 };
