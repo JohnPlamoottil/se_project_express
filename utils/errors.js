@@ -8,7 +8,7 @@ const FORBIDDEN = 403;
 const NOT_FOUND = 404;
 const CONFLICT = 409;
 
-const INTERNAL_SERVER_ERROR = 500;
+const INTERNAL_SERVOR_ERROR = 500;
 
 // Centralized Error Handler was deleted june28 2025 with Jenny Doctor Office hour
 
@@ -20,5 +20,5 @@ module.exports = {
   FORBIDDEN,
   NOT_FOUND,
   CONFLICT,
-  INTERNAL_SERVER_ERROR,
+  INTERNAL_SERVOR_ERROR,
 };
