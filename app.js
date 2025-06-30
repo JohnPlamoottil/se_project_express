@@ -17,12 +17,13 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-app.use((req, res, next) => {
-  req.user = {
-    _id: "6837c5ef4cce6ac02603731b",
-  };
-  next();
-});
+// The middleware with the hard-coded ID should be removed. It will not be used at this stage. - Aisalkyn Dzhenalieva
+// app.use((req, res, next) => {
+//   req.user = {
+//     _id: "6837c5ef4cce6ac02603731b",
+//   };
+//   next();
+// });
 app.use("/", router);
 
 app.listen(PORT, () => {
