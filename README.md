@@ -1,4 +1,4 @@
-# WTWR (What to Wear?)
+# WTWR (What to Wear?) Sprints 12 & 13 Backend
 ## this is the 'server' side called SE_Project_Express - Back End
 The back-end project is focused on creating a server for the WTWR application. 
 
