@@ -102,6 +102,6 @@ This implementation ensures secure user management while maintaining the RESTful
 
 ### Links:
 
-- Link to the project on GH Pages: [(...)]
+- se_project_express: [[Backend](https://github.com/JohnPlamoottil/se_project_express)]
 - postman - Your public URL will be: https://www.postman.com/jjplamoottil
 ---
