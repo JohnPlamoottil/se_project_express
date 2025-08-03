@@ -1,6 +1,9 @@
-# WTWR (What to Wear?) Sprints 12 & 13 Backend
-## this is the 'server' side called SE_Project_Express - Back End
-The back-end project is focused on creating a server for the WTWR application. 
+# Express.js
+### Sprints 12, 13, 14 Backend (WTWR: What to Wear?)
+
+This is the 'server' side which is called SE_Project_Express - Backend
+
+The back-end project is focused on creating a server for the WTWR application using MongoDB Compass. 
 
 You’ll gain a deeper understanding of how to work with databases, set up security and testing, and deploy web applications on a remote machine. 
 
@@ -10,15 +13,15 @@ This project helps users manage their wardrobe items and determine what to wear 
 
 ## Prior to Submitting
 Before committing your code, make sure you edit the file `sprint.txt` in the root folder. 
+
 The file `sprint.txt` should contain the number of the sprint you're currently working on. For ex. 12
 
 ## Project Functionality
-
-- Users can:
-  - View a collection of clothing items.
-  - Add a new item (with name, image URL, and weather suitability).
-  - Like or dislike items.
-  - Delete items they own.
+Users can:
+- View a collection of clothing items.
+- Add a new item (with name, image URL, and weather suitability).
+- Like or dislike items.
+- Delete items they own.
 
 ## Technologies and Techniques Used
 
@@ -29,9 +32,10 @@ The file `sprint.txt` should contain the number of the sprint you're currently w
 - **Middleware** – for centralized error handling and mock authorization
 - **Environment-based configuration** – using `process.env`
 
----
 # Sprint 12
-## Project 12 - Introduction to Back-End: Node.js and Express.js:
+Introduction to Backend - Node.js and Express.js
+## Project 12
+se_project_express
 
 ### Overview:
 
@@ -64,18 +68,17 @@ The file `sprint.txt` should contain the number of the sprint you're currently w
 - MongoDB
 - SQL
 
----
 # Sprint 13
-## Project 13 - Back-End Authentication and Authorization:
+Back-End Authentication and Authorization
+## Project 13
+se_project_express
 
 ### Overview:
-
 - Intro
 - Features
 - Links
 
 ### Intro:
-
 This phase of the WTWR project focuses on implementing user authentication and authorization features. The key additions include:
 
 - User registration and login functionality with secure password handling
@@ -86,11 +89,11 @@ This phase of the WTWR project focuses on implementing user authentication and a
 
 This implementation ensures secure user management while maintaining the RESTful architecture established in the previous sprint.
 
-- This project can be run with these prompts:
+This project can be run with these prompts:
 
-- - `npm run start` — to launch the server
+- `npm run start` — to launch the server
 
-- - `npm run dev` — to launch the server with the hot reload feature
+- `npm run dev` — to launch the server with the hot reload feature
 
 ### Features:
 
@@ -100,8 +103,51 @@ This implementation ensures secure user management while maintaining the RESTful
 - JS Web Tokens
 - JS Regular Expressions (Regexs)
 
-### Links:
+# Sprint 14
+Back-End Authentication and Authorization
+## Project 14
+### WTWR - full stack
+se_project_react
 
-- se_project_express: [[Backend](https://github.com/JohnPlamoottil/se_project_express)]
-- postman - Your public URL will be: https://www.postman.com/jjplamoottil
----
+se_project_express
+
+### Overview:
+- Intro to Front-End Authentication with React
+- Intro to Web Application Security
+- Links
+
+### Intro:
+This project represents an important first in your software engineer journey: you’ll connect your frontend and backend and create a full-stack application. In this project, you'll:
+
+Implement the logic for signing up, signing in, and signing out
+Add new context to store data about the current user
+Implement the logic for editing a profile
+Implement the ability for users to add likes to clothing items
+In the process, you'll also utilize the API you created in projects 12 and 13 to send fetch requests.
+
+This implementation ensures secure user management while maintaining the RESTful architecture established in the previous sprint.
+
+This project can be run with these prompts:
+
+- `npm run start` — to launch the server
+- cd server_se_project_express
+- cd web_se_project_react
+- `npm run dev` — to launch the server with the hot reload feature
+- this launches the server as a local host
+- next sprint will deploy this website to the web
+  
+### Features:
+- Front End Authentication and Authorization 
+- Web Security
+- JS Web token on the frontend
+
+
+### Github Links:
+se_project_react: [Frontend](https://github.com/JohnPlamoottil/se_project_react)
+
+se_project_express: [Backend](https://github.com/JohnPlamoottil/se_project_express)
+
+### Postman Link:
+
+Sprints 12 & 13 Tests: [Postman](https://www.postman.com/jjplamoottil)
+
