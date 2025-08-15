@@ -28,5 +28,6 @@ module.exports = {
         allowAfterSuper: true,
       },
     ],
+    "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
   },
 };
