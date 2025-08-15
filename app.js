@@ -27,6 +27,8 @@ app.use(cors());
 //   };
 //   next();
 // });
+
+// Set up server crash testing
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
