@@ -6,7 +6,7 @@ const {
   FORBIDDEN,
   NOT_FOUND,
   INTERNAL_SERVOR_ERROR,
-} = require("../utils/errors");
+} = require("../middlewares/errors/errors");
 
 // GET clothing items
 const getItems = (req, res) => {

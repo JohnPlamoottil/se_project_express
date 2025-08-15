@@ -29,6 +29,11 @@ app.use(cors());
 // });
 app.use("/", router);
 
+app.use((err, req, res) => {
+  console.error(err);
+  res.send({ message: err.message });
+});
+
 app.listen(PORT, () => {
   console.log(`App is listening at port ${PORT}`);
 });

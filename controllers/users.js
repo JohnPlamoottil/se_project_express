@@ -12,10 +12,10 @@ const {
   NOT_FOUND,
   CONFLICT,
   INTERNAL_SERVOR_ERROR,
-} = require("../utils/errors");
+} = require("../middlewares/errors/errors");
 
 // Login user
-const login = (req, res) => {
+const login = (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -32,15 +32,15 @@ const login = (req, res) => {
       return res.status(OK).send({ token, user });
     })
     .catch((err) => {
-      console.error(err);
-
       if (err.message === "Incorrect email or password") {
-        return res.status(UNAUTHORIZED).json({ message: err.message });
+        const error = err;
+        error.statusCode = UNAUTHORIZED;
+        return next(error);
       }
 
-      return res
-        .status(INTERNAL_SERVOR_ERROR)
-        .json({ message: "An error occurred on the server" });
+      const error = new Error("An error occurred on the server");
+      error.statusCode = INTERNAL_SERVOR_ERROR;
+      return next(error);
     });
 };
 
