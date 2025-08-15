@@ -1,5 +1,5 @@
 # Express.js
-### Sprints 12, 13, 14, 15 Backend (WTWR: What to Wear?)
+### Sprints 12, 13, 15 Backend (WTWR: What to Wear?)
 
 Domain: [What to Wear](https://wtwr-jjsprint15.chickenkiller.com/)
 
@@ -33,6 +33,15 @@ Users can:
 - **REST API** – standardized API structure
 - **Middleware** – for centralized error handling and mock authorization
 - **Environment-based configuration** – using `process.env`
+
+### Github Links:
+se_project_react: [Frontend](https://github.com/JohnPlamoottil/se_project_react)
+
+se_project_express: [Backend](https://github.com/JohnPlamoottil/se_project_express)
+
+### Postman Link:
+
+Sprints 12 & 13 Tests: [Postman](https://www.postman.com/jjplamoottil)
 
 # Sprint 12
 Introduction to Backend - Node.js and Express.js
@@ -105,51 +114,48 @@ This project can be run with these prompts:
 - JS Web Tokens
 - JS Regular Expressions (Regexs)
 
-# Sprint 14
-Back-End Authentication and Authorization
-## Project 14
+# Sprint 15
+Automated Testing and Cloud Deployment
+## Project 15
 ### WTWR - full stack
 se_project_react
 
 se_project_express
 
+You’ll only submit the se_project_express repository for code review.
 ### Overview:
-- Intro to Front-End Authentication with React
-- Intro to Web Application Security
-- Links
+- Automated Testing
+- Advanced Middleware
+- Deploying and Hosting in the Cloud
 
 ### Intro:
-This project represents an important first in your software engineer journey: you’ll connect your frontend and backend and create a full-stack application. In this project, you'll:
-
-Implement the logic for signing up, signing in, and signing out
-Add new context to store data about the current user
-Implement the logic for editing a profile
-Implement the ability for users to add likes to clothing items
-In the process, you'll also utilize the API you created in projects 12 and 13 to send fetch requests.
-
-This implementation ensures secure user management while maintaining the RESTful architecture established in the previous sprint.
+In the last two chapters, you improved your WTWR application by adding three new middlewares to it, and you deployed the application to the cloud. Now, let’s make sure that you’ve done everything in the right order and prepare the project for a code review. In this project, you'll:
 
 This project can be run with these prompts:
 
 - `npm run start` — to launch the server
-- cd server_se_project_express
-- cd web_se_project_react
+  - cd server_se_project_express
+  - cd web_se_project_react
 - `npm run dev` — to launch the server with the hot reload feature
-- this launches the server as a local host
-- next sprint will deploy this website to the web
+- `npm run build` - creates a build directory for the appl.
+- `npm run deploy` - commits changes to the public domain
+
+Before making the final adjustments to the project, use the following checklists to ensure that you have completed all of the necessary tasks described in the two previous chapters.
   
 ### Features:
-- Front End Authentication and Authorization 
-- Web Security
-- JS Web token on the frontend
-
-
-### Github Links:
-se_project_react: [Frontend](https://github.com/JohnPlamoottil/se_project_react)
-
-se_project_express: [Backend](https://github.com/JohnPlamoottil/se_project_express)
-
-### Postman Link:
-
-Sprints 12 & 13 Tests: [Postman](https://www.postman.com/jjplamoottil)
-
+- Utilize centralized error handling
+- Define constructors for errors 
+- Request validation functions
+- Create a virtual machine for the remote server 
+  - Utilize VM on Google Cloud via SSH
+- Install and configure all of the required tools: 
+  - Node.js
+  - MongoDB 
+  - Git
+- Launch node application using the PM2 process manager
+- Register subdomains for both the frontend and backend
+- Configure request redirection from public URLs to the application using nginx
+- Encrypte data with an SSL certificate
+- Store secrets in a .env file on the server
+- Upload the front end to the server 
+- Configure ngnix to serve the front end
