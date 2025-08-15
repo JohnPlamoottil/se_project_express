@@ -16,7 +16,7 @@ This project helps users manage their wardrobe items and determine what to wear 
 ## Prior to Submitting
 Before committing your code, make sure you edit the file `sprint.txt` in the root folder. 
 
-The file `sprint.txt` should contain the number of the sprint you're currently working on. For ex. 12
+The file `sprint.txt` should contain the number of the sprint you're currently working on. Only for sprints 12 and 13
 
 ## Project Functionality
 Users can:
