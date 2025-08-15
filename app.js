@@ -2,7 +2,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const dotenv = require("dotenv");
 const router = require("./routes/index");
 
