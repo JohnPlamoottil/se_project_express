@@ -3,8 +3,7 @@ const ForbiddenError = require("../middlewares/errors/forbiddenError");
 const NotFoundError = require("../middlewares/errors/notFound");
 const InvalidError = require("../middlewares/errors/invalidError");
 const DEFAULT_ERROR = require("../middlewares/errors/serverError");
-const { OK, CREATED } = require("../middlewares/errors/errors");
-
+const { OK, CREATED } = require("../utils/errors");
 // GET clothing items
 const getItems = (req, res, next) => {
   clothingItem
