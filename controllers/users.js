@@ -15,9 +15,10 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res
-      .status(InvalidError)
-      .json({ message: "Email and password are required" });
+    // return res
+    //   .status(InvalidError)
+    //   .json({ message: "Email and password are required" });
+    return next(new InvalidError("Email and password are required"));
   }
 
   return User.findUserByCredentials(email, password)
@@ -29,9 +30,7 @@ const login = (req, res, next) => {
     })
     .catch((err) => {
       if (err.message === "Incorrect email or password") {
-        const error = err;
-        error.statusCode = UnauthorizedError;
-        return next(error);
+        return next(new UnauthorizedError("Incorrect email or password"));
       }
 
       return next(new Error());
