@@ -8,7 +8,7 @@ const NotFoundError = require("../middlewares/errors/notFound");
 const InvalidError = require("../middlewares/errors/invalidError");
 const UnauthorizedError = require("../middlewares/errors/unauthorizedError");
 const DEFAULT_ERROR = require("../middlewares/errors/serverError");
-const { OK, CREATED } = require("../middlewares/errors/errors");
+const { OK, CREATED } = require("../utils/errors");
 
 // Login user
 const login = (req, res, next) => {
