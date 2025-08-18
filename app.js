@@ -1,8 +1,9 @@
-// entry point
+const dotenv = require("dotenv");
+
 const express = require("express");
 const mongoose = require("mongoose");
+const { errors } = require("celebrate");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const router = require("./routes/index");
 
 dotenv.config();
@@ -19,15 +20,8 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-// The middleware with the hard-coded ID should be removed. It will not be used at this stage. - Aisalkyn Dzhenalieva
-// app.use((req, res, next) => {
-//   req.user = {
-//     _id: "6837c5ef4cce6ac02603731b",
-//   };
-//   next();
-// });
 
-// Set up server crash testing
+// Set up server crash testing Aug16 2025
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
@@ -35,9 +29,14 @@ app.get("/crash-test", () => {
 });
 app.use("/", router);
 
+app.use(errors());
+
 app.use((err, req, res) => {
+  const error = err;
+  error.message = error.message || "Internal server error";
+  error.statusCode = error.statusCode || 500;
   console.error(err);
-  res.send({ message: err.message });
+  res.status(err.statusCode).send({ message: err.message });
 });
 
 app.listen(PORT, () => {

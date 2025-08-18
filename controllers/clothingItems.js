@@ -1,30 +1,22 @@
 const clothingItem = require("../models/clothingItem");
-const {
-  OK,
-  CREATED,
-  BAD_REQUEST,
-  FORBIDDEN,
-  NOT_FOUND,
-  INTERNAL_SERVOR_ERROR,
-} = require("../middlewares/errors/errors");
+const ForbiddenError = require("../middlewares/errors/forbiddenError");
+const NotFoundError = require("../middlewares/errors/notFound");
+const InvalidError = require("../middlewares/errors/invalidError");
+const DEFAULT_ERROR = require("../middlewares/errors/serverError");
+const { OK, CREATED } = require("../middlewares/errors/errors");
 
 // GET clothing items
-const getItems = (req, res) => {
+const getItems = (req, res, next) => {
   clothingItem
     .find({})
     .then((items) => {
       res.status(OK).send({ data: items });
     })
-    .catch((err) => {
-      console.error(err);
-      res
-        .status(INTERNAL_SERVOR_ERROR)
-        .send({ message: "An error occurred on the server" });
-    });
+    .catch(next);
 };
 
 // POST  clothing items
-const createItem = (req, res) => {
+const createItem = (req, res, next) => {
   const { name, weather, imageUrl } = req.body;
   const owner = req.user._id;
 
@@ -36,11 +28,9 @@ const createItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "ValidationError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid item data" });
+        return res.status(InvalidError).send({ message: "Invalid item data" });
       }
-      return res
-        .status(INTERNAL_SERVOR_ERROR)
-        .send({ message: "An error occurred on the server" });
+      return next(new Error());
     });
 };
 
@@ -59,13 +49,13 @@ const likeItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
-        return res.status(NOT_FOUND).send({ message: "Item not found" });
+        return res.status(NotFoundError).send({ message: "Item not found" });
       }
       if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid item ID" });
+        return res.status(InvalidError).send({ message: "Invalid item ID" });
       }
       return res
-        .status(INTERNAL_SERVOR_ERROR)
+        .status(DEFAULT_ERROR)
         .send({ message: "An error occurred on the server" });
     });
 };
@@ -85,19 +75,19 @@ const dislikeItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
-        return res.status(NOT_FOUND).send({ message: "Item not found" });
+        return res.status(NotFoundError).send({ message: "Item not found" });
       }
       if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid item ID" });
+        return res.status(InvalidError).send({ message: "Invalid item ID" });
       }
       return res
-        .status(INTERNAL_SERVOR_ERROR)
+        .status(DEFAULT_ERROR)
         .send({ message: "An error occurred on the server" });
     });
 };
 
 // Delete clothing items
-const deleteItem = (req, res) => {
+const deleteItem = (req, res, next) => {
   const { itemId } = req.params;
   const userId = req.user._id;
 
@@ -105,13 +95,13 @@ const deleteItem = (req, res) => {
     .findById(itemId)
     .then((item) => {
       if (!item) {
-        return res.status(NOT_FOUND).send({ message: "Item not found" });
+        return next(new NotFoundError("Item not found"));
       }
 
       if (item.owner.toString() !== userId.toString()) {
-        return res
-          .status(FORBIDDEN)
-          .send({ message: "You are not authorized to delete this item" });
+        return next(
+          new ForbiddenError("You are not authorized to delete this item")
+        );
       }
 
       return item.deleteOne().then(() => {
@@ -121,10 +111,10 @@ const deleteItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid item ID" });
+        return res.status(InvalidError).send({ message: "Invalid item ID" });
       }
       return res
-        .status(INTERNAL_SERVOR_ERROR)
+        .status(DEFAULT_ERROR)
         .send({ message: "An error occurred on the server" });
     });
 };
