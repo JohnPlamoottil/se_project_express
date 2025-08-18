@@ -1,4 +1,4 @@
-# Express.js
+# WTWR (What to Wear?): Back End
 ### Sprints 12, 13, 15 Backend (WTWR: What to Wear?)
 
 Domain: [What to Wear](https://wtwr-jjsprint15.chickenkiller.com/)
@@ -7,9 +7,15 @@ This is the 'server' side which is called SE_Project_Express - Backend
 
 The back-end project is focused on creating a server for the WTWR application using MongoDB Compass. 
 
-You’ll gain a deeper understanding of how to work with databases, set up security and testing, and deploy web applications on a remote machine. 
+This project is the backend half of the WTWR project! 
 
-The eventual goal is to create a server with an RESTful API and user authorization.
+Created using Node.js, and express mongoDB. 
+
+This project uses routes and controllers to fetch, create, and delete items on the front end. 
+
+The project also authorizes and stores user data safely in the server allowing users to create a secure account on the front-end. 
+
+The requests were all tested using customized requests via postman to ensure request efficiency and accuracy.
 
 This project helps users manage their wardrobe items and determine what to wear based on the weather. 
 
@@ -24,6 +30,15 @@ Users can:
 - Add a new item (with name, image URL, and weather suitability).
 - Like or dislike items.
 - Delete items they own.
+
+# Tech Stacks used
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+
 
 ## Technologies and Techniques Used
 
