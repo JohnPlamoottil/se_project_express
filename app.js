@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const cors = require("cors");
 const router = require("./routes/index");
+const routes = require("./routes");
+const errorHandler = require("./middlewares/errorHandler");
+const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 dotenv.config();
 const app = express();
@@ -29,16 +32,17 @@ app.get("/crash-test", () => {
 });
 app.use("/", router);
 
+app.use(requestLogger);
+
+app.use(routes);
+
+app.use(errorLogger);
+
 app.use(errors());
 
-app.use((err, req, res) => {
-  const error = err;
-  error.message = error.message || "Internal server error";
-  error.statusCode = error.statusCode || 500;
-  console.error(err);
-  res.status(err.statusCode).send({ message: err.message });
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`App is listening at port ${PORT}`);
+  console.log("This is all working");
 });
