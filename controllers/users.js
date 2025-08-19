@@ -8,6 +8,7 @@ const NotFoundError = require("../middlewares/errors/notFound");
 const InvalidError = require("../middlewares/errors/invalidError");
 const UnauthorizedError = require("../middlewares/errors/unauthorizedError");
 const DEFAULT_ERROR = require("../middlewares/errors/serverError");
+const ServerError = require("../middlewares/errors/serverError");
 const { OK, CREATED } = require("../utils/errors");
 
 // Login user
@@ -33,7 +34,7 @@ const login = (req, res, next) => {
         return next(new UnauthorizedError("Incorrect email or password"));
       }
 
-      return next(new Error());
+      return next(new ServerError("An internal error has occurred"));
     });
 };
 
@@ -47,11 +48,10 @@ const getCurrentUser = (req, res, next) => {
         return next(new NotFoundError("User Not found"));
       }
       if (err.name === "CastError") {
-        return res.status(InvalidError).send({ message: "Invalid User ID" });
+        return next(new InvalidError("Invalid User ID"));
       }
-      return res
-        .status(DEFAULT_ERROR)
-        .send({ message: "An error occurred on the server" });
+
+      return next(err);
     });
 };
 
@@ -60,13 +60,11 @@ const createUser = (req, res, next) => {
   const { name, avatar, email, password } = req.body;
 
   if (!email || !password) {
-    return res
-      .status(InvalidError)
-      .json({ message: "Email and password are required" });
+    return next(new InvalidError("Email and password are required"));
   }
 
   if (!validator.isEmail(email)) {
-    return res.status(InvalidError).json({ message: "Invalid email format" });
+    return next(new InvalidError("Invalid email format"));
   }
 
   return User.findOne({ email })
@@ -91,12 +89,10 @@ const createUser = (req, res, next) => {
       console.error(err);
 
       if (err.name === "ValidationError") {
-        return res.status(InvalidError).json({ message: err.message });
+        return next(new InvalidError(err.message));
       }
 
-      return res
-        .status(DEFAULT_ERROR)
-        .json({ message: "An error occurred on the server" });
+      return next(new DEFAULT_ERROR("An error occurred on the server"));
     });
 };
 
@@ -117,14 +113,13 @@ const updateCurrentUser = (req, res, next) => {
         return next(new NotFoundError("User Not Found"));
       }
       if (err.name === "ValidationError") {
-        return res.status(InvalidError).send({ message: err.message });
+        return next(new InvalidError(err.message));
       }
       if (err.name === "CastError") {
-        return res.status(InvalidError).send({ message: "Invalid User ID" });
+        return next(new InvalidError("Invalid User ID"));
       }
-      return res
-        .status(DEFAULT_ERROR)
-        .send({ message: "An error occurred on the server" });
+
+      return next(new DEFAULT_ERROR("An error occurred on the server"));
     });
 };
 
