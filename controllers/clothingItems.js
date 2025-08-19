@@ -4,6 +4,7 @@ const NotFoundError = require("../middlewares/errors/notFound");
 const InvalidError = require("../middlewares/errors/invalidError");
 const DEFAULT_ERROR = require("../middlewares/errors/serverError");
 const { OK, CREATED } = require("../utils/errors");
+
 // GET clothing items
 const getItems = (req, res, next) => {
   clothingItem
@@ -27,14 +28,14 @@ const createItem = (req, res, next) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "ValidationError") {
-        return res.status(InvalidError).send({ message: "Invalid item data" });
+        return next(new InvalidError("Invalid item data"));
       }
-      return next(new Error());
+      return next(new DEFAULT_ERROR("An error has occured on the server"));
     });
 };
 
 // PUT liking clothing items
-const likeItem = (req, res) => {
+const likeItem = (req, res, next) => {
   const { itemId } = req.params;
 
   clothingItem
@@ -48,19 +49,18 @@ const likeItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
-        return res.status(NotFoundError).send({ message: "Item not found" });
+        return next(new NotFoundError("Item not found"));
       }
       if (err.name === "CastError") {
-        return res.status(InvalidError).send({ message: "Invalid item ID" });
+        return next(new InvalidError("Invalid item ID"));
       }
-      return res
-        .status(DEFAULT_ERROR)
-        .send({ message: "An error occurred on the server" });
+
+      return next(new DEFAULT_ERROR("An error occurred on the server"));
     });
 };
 
 // Dislike clothing items
-const dislikeItem = (req, res) => {
+const dislikeItem = (req, res, next) => {
   const { itemId } = req.params;
 
   clothingItem
@@ -74,14 +74,13 @@ const dislikeItem = (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "DocumentNotFoundError") {
-        return res.status(NotFoundError).send({ message: "Item not found" });
+        return next(new NotFoundError("Item not found"));
       }
       if (err.name === "CastError") {
-        return res.status(InvalidError).send({ message: "Invalid item ID" });
+        return next(new InvalidError("Invalid item ID"));
       }
-      return res
-        .status(DEFAULT_ERROR)
-        .send({ message: "An error occurred on the server" });
+
+      return next(new DEFAULT_ERROR("An error occurred on the server"));
     });
 };
 
@@ -110,11 +109,10 @@ const deleteItem = (req, res, next) => {
     .catch((err) => {
       console.error(err);
       if (err.name === "CastError") {
-        return res.status(InvalidError).send({ message: "Invalid item ID" });
+        return next(new InvalidError("Invalid item ID"));
       }
-      return res
-        .status(DEFAULT_ERROR)
-        .send({ message: "An error occurred on the server" });
+
+      return next(new DEFAULT_ERROR("An error occurred on the server"));
     });
 };
 module.exports = {
