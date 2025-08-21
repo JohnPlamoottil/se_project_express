@@ -1,17 +1,20 @@
 const dotenv = require("dotenv");
 
+dotenv.config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const cors = require("cors");
-const router = require("./routes/index");
-const routes = require("./routes");
+const routes = require("./routes/index");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { JWT_SECRET } = require("./utils/config");
 
-dotenv.config();
 const app = express();
 const { PORT = 3001 } = process.env;
+
+console.log(JWT_SECRET);
 
 // connecting to Mongo DB Server
 mongoose
@@ -30,7 +33,6 @@ app.get("/crash-test", () => {
     throw new Error("Server will crash now");
   }, 0);
 });
-app.use("/", router);
 
 app.use(requestLogger);
 
